@@ -5,6 +5,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.video import Video
+from kivy.uix.image import Image
 
 class SplashScreen(Screen):
     def __init__(self,**kwargs):
@@ -58,11 +59,14 @@ class VideoScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         main_layout=BoxLayout(orientation="vertical")
-        # this for video 
-        math=Video(source="KCSE-2025-QUESTION 1.mp4",
+        # this for video
+        main_layout=FloatLayout()
+        self.thumbnail=Image (source="kcse.jpg",
+                         allow_stretch=True) 
+        self.math=Video(source="KCSE-2025-QUESTION 1.mp4",
                    state="stop",
-                   size_hint=(1,1)
-                   )
+                   size_hint=(1,1))
+
         # The buttons
         button_layout=FloatLayout(size_hint=(1,0.12))
             
@@ -90,16 +94,20 @@ class VideoScreen(Screen):
         button_layout.add_widget(pause_btn)
         button_layout.add_widget(button3)
         button_layout.add_widget(button4)
-        main_layout.add_widget(math)
+        main_layout.add_widget(self.math)
+        main_layout.add_widget(self.thumbnail)
         main_layout.add_widget(button_layout)
+        
 
         def play_pause(instance):
-            if math.state=="play":
-                math.state= "pause"
-                instance.text="play"
+            if self.math.state=="play":
+                self.math.state= "pause"
+                play_pause_btn.text="Play"
             else:
-                math.state="play"
-                instance.text="pause"
+                self.thumbnail.opacity=0    #hide thumbnail whenstarting
+                self.thumbnail.disabled=True
+                self.math.state="play"
+                play_pause_btn.text="Pause"
 
         play_pause_btn.bind(on_press=play_pause)
                 

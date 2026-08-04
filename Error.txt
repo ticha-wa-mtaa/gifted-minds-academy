@@ -1,0 +1,12 @@
+        def play_pause(instance):
+            if self.math.state=="play":
+                self.math.state= "pause"
+                play_pause.text="play"
+            else:
+                self.thumbnail.opacity=0    #hide thumbnail whenstarting
+                self.thumbnail.disabled=True
+                self.math.state="play"
+                play_pause.text="pause"
+
+        play_pause_btn.bind(on_press=play_pause)
+                
