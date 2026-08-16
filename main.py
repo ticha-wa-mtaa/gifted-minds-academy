@@ -9,20 +9,22 @@ from kivy.uix.image import Image
 
 class SplashScreen(Screen):
     def __init__(self,**kwargs):
-        super().__init__(**kwargs)
+        super().__init__(**kwargs) 
+        main_layout=BoxLayout
+            
 
         layout=FloatLayout()
 
         title=Label(
             text="Welcome to Gifted Minds Academy",
             size_hint=(None,None), size=(300,50),
-            pos_hint={"center_x":0.5,"center_y":0.9},
+            pos_hint={"center_x":0.5,"center_y":0.95},
             font_size=30
             )
         video=Button(
             text="Watch KCSE Past Papers",
             size_hint=(0.5,0.1),
-            pos_hint={"center_x":0.5,"center_y":0.5}
+            pos_hint={"center_x":0.5,"center_y":0.5},
             )
         video.bind(on_press=self.go_to_video)
 
@@ -62,7 +64,9 @@ class VideoScreen(Screen):
         # this for video
         main_layout=FloatLayout()
         self.thumbnail=Image (source="kcse.jpg",
-                         allow_stretch=True) 
+                         allow_stretch=True,size_hint=(1,1)
+
+                         ) 
         self.math=Video(source="KCSE-2025-QUESTION 1.mp4",
                    state="stop",
                    size_hint=(1,1))
@@ -71,17 +75,17 @@ class VideoScreen(Screen):
         button_layout=FloatLayout(size_hint=(1,0.12))
             
         play_pause_btn=Button(text=("PLAY"),
-            size_hint=(0.18,0.5),
+            size_hint=(0.05,0.2),
             pos_hint={"x":0.05,"center_y":0.5}
         )
         
         pause_btn=Button(text=("NEXT QUESTION"),
-            size_hint=(0.18,0.5),
+            size_hint=(0.13,0.2),
             pos_hint={"x":0.3,"center_y":0.5}
         )
 
         button3=Button(text=("SEARCH FOR PAST KCSE QUESTION"),
-            size_hint=(0.20,0.5),
+            size_hint=(0.18,0.5),
             pos_hint={"x":0.52,"center_y":0.5}
         )
 
